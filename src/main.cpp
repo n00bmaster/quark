@@ -2830,7 +2830,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
 */
 
         // Genesis block
-        const char* pszTimestamp = "21 July 2013, The Guardian, Tesco boss says cheap food era is over";
+        const char* pszTimestamp = "Feb 1 2014 - BitLoonie is born";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
