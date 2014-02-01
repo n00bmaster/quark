@@ -1,4 +1,4 @@
-Name Quark
+Name Bitloonie
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -6,8 +6,8 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 0.8.3.6
-!define COMPANY "Quark project"
-!define URL http://www.qrk.cc/
+!define COMPANY "Bitloonie project"
+!define URL http://www.BTL.cc/
 
 # MUI Symbol Definitions
 !define MUI_ICON "../share/pixmaps/bitcoin.ico"
@@ -19,8 +19,8 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER Quark
-!define MUI_FINISHPAGE_RUN $INSTDIR\quarkcoin-qt.exe
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER Bitloonie
+!define MUI_FINISHPAGE_RUN $INSTDIR\bitloonie-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "../share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
@@ -45,14 +45,14 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile quark-0.8.3r6-win32-setup.exe
-InstallDir $PROGRAMFILES\Quark
+OutFile bitloonie-0.8.3r6-win32-setup.exe
+InstallDir $PROGRAMFILES\Bitloonie
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion 0.8.3.6
-VIAddVersionKey ProductName Quark
+VIAddVersionKey ProductName Bitloonie
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
@@ -66,11 +66,11 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File ../release/quarkcoin-qt.exe
+    File ../release/bitloonie-qt.exe
     File /oname=COPYING.txt ../COPYING
     File /oname=readme.txt ../doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File ../src/quarkcoind.exe
+    File ../src/bitloonied.exe
     SetOutPath $INSTDIR\src
     File /r /x *.exe /x *.o ../src\*.*
     SetOutPath $INSTDIR
@@ -83,8 +83,8 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Quark.lnk" $INSTDIR\quarkcoin-qt.exe
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall Quark.lnk" $INSTDIR\uninstall.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Bitloonie.lnk" $INSTDIR\bitloonie-qt.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall Bitloonie.lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "${VERSION}"
@@ -94,10 +94,10 @@ Section -post SEC0001
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "quark" "URL Protocol" ""
-    WriteRegStr HKCR "quark" "" "URL:Quarkcoin"
-    WriteRegStr HKCR "quark\DefaultIcon" "" $INSTDIR\quarkcoin-qt.exe
-    WriteRegStr HKCR "quark\shell\open\command" "" '"$INSTDIR\quarkcoin-qt.exe" "%1"'
+    WriteRegStr HKCR "bitloonie" "URL Protocol" ""
+    WriteRegStr HKCR "bitloonie" "" "URL:bitloonie"
+    WriteRegStr HKCR "bitloonie\DefaultIcon" "" $INSTDIR\bitloonie-qt.exe
+    WriteRegStr HKCR "bitloonie\shell\open\command" "" '"$INSTDIR\bitloonie-qt.exe" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -115,7 +115,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\quarkcoin-qt.exe
+    Delete /REBOOTOK $INSTDIR\bitloonie-qt.exe
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     Delete /REBOOTOK $INSTDIR\readme.txt
     RMDir /r /REBOOTOK $INSTDIR\daemon
@@ -125,9 +125,9 @@ SectionEnd
 
 Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall Quark.lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Quark.lnk"
-    Delete /REBOOTOK "$SMSTARTUP\Quark.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall Bitloonie.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Bitloonie.lnk"
+    Delete /REBOOTOK "$SMSTARTUP\Bitloonie.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
@@ -135,7 +135,7 @@ Section -un.post UNSEC0001
     DeleteRegValue HKCU "${REGKEY}" Path
     DeleteRegKey /IfEmpty HKCU "${REGKEY}\Components"
     DeleteRegKey /IfEmpty HKCU "${REGKEY}"
-    DeleteRegKey HKCR "quark"
+    DeleteRegKey HKCR "bitloonie"
     RmDir /REBOOTOK $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $INSTDIR
     Push $R0

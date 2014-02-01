@@ -1,7 +1,7 @@
 src/*.exe
-src/quarkcoin
-src/quarkcoind
-src/test_quarkcoin
+src/bitloonie
+src/bitloonied
+src/test_bitloonie
 .*.swp
 *.*~*
 *.bak
@@ -9,17 +9,17 @@ src/test_quarkcoin
 *.orig
 *.o
 *.patch
-.quarkcoin
+.bitloonie
 
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-quarkcoin-qt
-Quarkcoin-Qt.app
+bitloonie-qt
+bitloonie-Qt.app
 
 # Unit-tests
 Makefile.test
-quarkcoin-qt_test
+bitloonie-qt_test
 
 # Resources cpp
 qrc_*.cpp

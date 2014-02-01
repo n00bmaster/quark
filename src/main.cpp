@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2013 The Bitcoin developers
 // Copyright (c) 2013 The Sifcoin developers
-// Copyright (c) 2013 The Quarkcoin developers
+// Copyright (c) 2013 The bitloonie developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -68,7 +68,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Quarkcoin Signed Message:\n";
+const string strMessageMagic = "bitloonie Signed Message:\n";
 
 double dHashesPerSec = 0.0;
 int64 nHPSTimerStart = 0;
@@ -1093,8 +1093,8 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 }
 
 static const int64 nGenesisBlockRewardCoin = 1 * COIN;
-static const int64 nBlockRewardStartCoin = 2048 * COIN;
-static const int64 nBlockRewardMinimumCoin = 1 * COIN;
+static const int64 nBlockRewardStartCoin = 1024 * COIN;
+static const int64 nBlockRewardMinimumCoin = 0 * COIN;
 
 static const int64 nTargetTimespan = 10 * 60; // 10 minutes
 static const int64 nTargetSpacing = 30; // 30 seconds
@@ -2848,7 +2848,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
 
         if (fTestNet)
         {
-            block.nTime    = 1373481000;
+            block.nTime    = 1391287891;
             block.nNonce   = 905523645;
         }
 
@@ -4628,7 +4628,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
         return false;
 
     //// debug print
-    printf("QuarkcoinMiner:\n");
+    printf("bitloonieMiner:\n");
     printf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex().c_str(), hashTarget.GetHex().c_str());
     pblock->print();
     printf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue).c_str());
@@ -4637,7 +4637,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != hashBestChain)
-            return error("QuarkcoinMiner : generated block is stale");
+            return error("bitloonieMiner : generated block is stale");
 
         // Remove key from key pool
         reservekey.KeepKey();
@@ -4651,7 +4651,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
         // Process this block the same as if we had received it from another node
         CValidationState state;
         if (!ProcessBlock(state, NULL, pblock))
-            return error("QuarkcoinMiner : ProcessBlock, block not accepted");
+            return error("bitloonieMiner : ProcessBlock, block not accepted");
     }
 
     return true;
@@ -4659,9 +4659,9 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
 
 void static BitcoinMiner(CWallet *pwallet)
 {
-    printf("QuarkcoinMiner started\n");
+    printf("bitloonieMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("quarkcoin-miner");
+    RenameThread("bitloonie-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);
@@ -4685,7 +4685,7 @@ void static BitcoinMiner(CWallet *pwallet)
         CBlock *pblock = &pblocktemplate->block;
         IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-        printf("Running QuarkcoinMiner with %"PRIszu" transactions in block (%u bytes)\n", pblock->vtx.size(),
+        printf("Running bitloonieMiner with %"PRIszu" transactions in block (%u bytes)\n", pblock->vtx.size(),
                ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
@@ -4789,7 +4789,7 @@ void static BitcoinMiner(CWallet *pwallet)
     } }
     catch (boost::thread_interrupted)
     {
-        printf("QuarkcoinMiner terminated\n");
+        printf("bitloonieMiner terminated\n");
         throw;
     }
 }

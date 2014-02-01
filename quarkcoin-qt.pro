@@ -1,6 +1,6 @@
 TEMPLATE = app
-TARGET = quarkcoin-qt
-macx:TARGET = "Quarkcoin-Qt"
+TARGET = bitloonie-qt
+macx:TARGET = "bitloonie-Qt"
 VERSION = 0.8.3
 INCLUDEPATH += src src/json src/qt
 QT += network

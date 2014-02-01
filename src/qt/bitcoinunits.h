@@ -19,9 +19,9 @@ public:
      */
     enum Unit
     {
-        QRK,
-        cQRK,
-        mQRK
+        BTL,
+        cBTL,
+        mBTL
     };
 
     //! @name Static API
