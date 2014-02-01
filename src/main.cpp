@@ -2844,12 +2844,12 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         block.nVersion = 112;
         block.nTime    = timeGenesisBlock;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = 12058113;
+        block.nNonce   = 0;
 
         if (fTestNet)
         {
             block.nTime    = 1391287891;
-            block.nNonce   = 905523645;
+            block.nNonce   = 0;
         }
 
         //// debug print
