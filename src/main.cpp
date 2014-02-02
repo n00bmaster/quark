@@ -2863,7 +2863,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         block.print();
-        assert(block.hashMerkleRoot == uint256("0x868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776"));
+        assert(block.hashMerkleRoot == uint256("0x8e494eabb8eadf1a426b84671fcc261c8bf91c9485de216663c5ccc1d180cbfe"));
         assert(hash == hashGenesisBlock);
 
         // Start new block file
