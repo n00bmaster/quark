@@ -10,7 +10,7 @@ src/test_bitloonie
 *.o
 *.patch
 .bitloonie
-
+libs
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
